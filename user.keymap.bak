@@ -1,0 +1,133 @@
+;; User keymap
+;; -----------------------------
+;; Keymaps are stored as a set of diffs that are merged together together
+;; to create the final set of keys. You can modify these diffs to either add
+;; or subtract bindings.
+;;
+;; Like behaviors, keys are bound by tag. When objects with those tags are active
+;; the key bindings are live. Keys can be bound to any number of Light Table commands,
+;; allowing you the flexibility to execute multiple operations together. To see a list
+;; of all the commands you can execute, start typing a word related to the thing you
+;; want to do in between the square brackets (e.g. type "editor").
+
+{:+ {:app {"ctrl-;" [:workspace.show]
+           "ctrl-:" [:show-commandbar-transient]}
+     :editor {"alt-w" [:editor.watch.watch-selection]
+              "alt-shift-w" [:editor.watch.unwatch]
+              "cmd-shift-f" [:smart-indent-selection]
+              "ctrl-t" [:tabset.next]
+
+              ;; Searcher の設定
+              "ctrl-shift-s" [:searcher.show]
+              ;; インライン Doc の設定
+              "pmeta-d" [:editor.doc.toggle]
+
+              ;; Paredt の設定
+              ;;; paredit-forward-slurp-sexp
+              ;;"ctrl-shift-9" [:paredit.grow.right]
+              ;;; paredit-backward-slurp-sexp
+              ;;"ctrl-shift-8" [:paredit.grow.left]
+              ;;; paredit-forward-barf-sexp
+              ;;"ctrl-shift-]" [:paredit.shrink.right]
+              ;;; paredit-backward-barf-sexp
+              ;;"ctrl-shift-[" [:paredit.shrink.left]
+              ;;; 対応なし? アットマークが入力できない
+              "ctrl-[" [:paredit.select.parent]
+              ;;; paredit-splice-sexp
+              ;;"alt-s" [:paredit.unwrap.parent]
+
+              ;; Paredit plus
+              "ctrl-k" [:paredit-plus.kill]
+
+              ;; アットマークが入力できない問題への対応
+              ;; 参考: http://qiita.com/kurogelee/items/44384950fe1b277c4021
+              ;;"@" [(:eval.custom "\"@\"" {:result-type :replace :verbatim true})]
+              ;; "@" [(:eval.custom "hogehoge" {:result-type :replace :verbatim true})]
+              ;; "ctrl-q" [(:eval.custom "hogehoge" {:result-type :replace :verbatim true})]
+
+              ;; multiple cursor
+              "ctrl-shift-," [:editor.sublime.selectLinesUpward]
+              "ctrl-shift-." [:editor.sublime.selectLinesDownward]
+              "ctrl-shift-/" [:editor.sublime.singleSelectionTop]
+              "ctrl-shift-h" [:editor.sublime.selectNextOccurrence]
+
+              }
+     :editor.clj {
+                  ;; :editor.cljs にも設定したいコピーするしか方法はない？
+                  ;; SubPar の設定
+                  "cmd-right" [:subpar.move.forward]
+                  "cmd-left" [:subpar.move.backward]
+                  "cmd-down" [:subpar.move.forward-down]
+                  "cmd-up" [:subpar.move.backward-up]
+                  "ctrl-shift-9" [:subpar.grow.right]
+                  "ctrl-shift-8" [:subpar.grow.left]
+                  "ctrl-shift-]" [:subpar.shrink.right]
+                  "ctrl-shift-[" [:subpar.shrink.left]
+                  "(" [(:subpar.open-pair "()")]
+                  ")" [(:subpar.close-pair ")")]
+                  "{" [(:subpar.open-pair "{}")]
+                  "}" [(:subpar.close-pair "}")]
+                  "[" [(:subpar.open-pair "[]")]
+                  "]" [(:subpar.close-pair "]")]
+                  "\"" [:subpar.insert-double-quote]
+                  "alt-s" [:subpar.splice]
+                  "alt-up" [:subpar.splice.delete-backward]
+                  "alt-down" [:subpar.splice.delete-forward]
+                  "backspace" [:subpar.delete.left]
+                  "delete" [:subpar.delete.right]
+                  "alt-shift-8" [(:subpar.open-pair "()")
+                                 :subpar.grow.right]
+                  }
+     ;; TODO: :editor.clj と重複しているのでマージしておきたい
+     :editor.cljs {
+                  ;; :editor.cljs にも設定したいコピーするしか方法はない？
+                  ;; SubPar の設定
+                  "cmd-right" [:subpar.move.forward]
+                  "cmd-left" [:subpar.move.backward]
+                  "cmd-down" [:subpar.move.forward-down]
+                  "cmd-up" [:subpar.move.backward-up]
+                  "ctrl-shift-9" [:subpar.grow.right]
+                  "ctrl-shift-8" [:subpar.grow.left]
+                  "ctrl-shift-]" [:subpar.shrink.right]
+                  "ctrl-shift-[" [:subpar.shrink.left]
+                  "(" [(:subpar.open-pair "()")]
+                  ")" [(:subpar.close-pair ")")]
+                  "{" [(:subpar.open-pair "{}")]
+                  "}" [(:subpar.close-pair "}")]
+                  "[" [(:subpar.open-pair "[]")]
+                  "]" [(:subpar.close-pair "]")]
+                  "\"" [:subpar.insert-double-quote]
+                  "alt-s" [:subpar.splice]
+                  "alt-up" [:subpar.splice.delete-backward]
+                  "alt-down" [:subpar.splice.delete-forward]
+                  "backspace" [:subpar.delete.left]
+                  "delete" [:subpar.delete.right]
+                  "alt-shift-8" [(:subpar.open-pair "()")
+                                 :subpar.grow.right]
+                  }
+
+
+     ;; コマンドバーアクティブ時 ctrl-n, ctrl-p で移動できるように設定
+     :filter-list.input { "ctrl-n" [(:filter-list.input.move-selection 1)]
+                          "ctrl-p" [(:filter-list.input.move-selection -1)]}}
+ :- {:app {;; default.keymap の設定を除去
+           "ctrl-space" [:show-commandbar-transient]
+           ;; emacs.keymap の設定を除去
+           "alt-x" [:show-commandbar-transient]}
+     :editor.keys.emacs {
+                         "delete" [(:emacs.keymap-cmd "Delete")]
+                         "backspace" [(:emacs.keymap-cmd "Backspace")]
+                         "ctrl-k" [(:emacs.keymap-cmd "Ctrl-K")]}
+     :editor.keys.normal {;; @ が入力できないので一時的に設定を外している
+                          ;; "[" [:editor.open-pair]
+
+                          ;; SubPar を利用するため標準の設定を解除
+                          "(" [(:editor.open-pair "(")]
+                          ")" [(:editor.close-pair ")")]
+                          "[" [(:editor.open-pair "[")]
+                          "{" [(:editor.open-pair "{")]
+                          "]" [(:editor.close-pair "]")]
+                          "}" [(:editor.close-pair "}")]
+                          "\"" [(:editor.repeat-pair "\"")]
+                          "backspace" [:editor.backspace-pair]
+                          }}}
