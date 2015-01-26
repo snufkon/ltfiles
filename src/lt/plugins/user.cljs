@@ -57,10 +57,6 @@
                       (js/window.clearTimeout (:interval @this))
                       (object/raise this :destroy)))
 
-
-;; タブからプロジェクトを探す
-;; アクティブタブから path を取得する
-
 (defn- current-editor-path
   []
   (let [ed (pool/last-active)]
@@ -72,9 +68,17 @@
     (files/parent project-path)
     nil))
 
-;; (path->project-dir
-;;  "/Users/kondo/Code/Clojure/application/om/src/om/dom.cljs")
-
+(cmd/command {:command :user.close-other-project-tabs
+              :desc "User: Close other project tabs"
+              :exec (fn []
+                      (let [cur-tab (tabs/active-tab)
+                            cur-path (tabs/->path cur-tab)
+                            cur-project-dir (path->project-dir cur-path)
+                            tabs (object/by-tag :tabset.tab)]
+                        (doseq [tab tabs]
+                          (let [project-dir (-> tab tabs/->path path->project-dir)]
+                            (when-not (= cur-project-dir project-dir)
+                              (object/raise tab :close))))))})
 
 ;; (find-project "hogehoge")
 
