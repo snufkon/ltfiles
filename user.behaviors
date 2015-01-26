@@ -1,0 +1,41 @@
+;; Your file has been converted to the new flat format.
+;; Conversion does not preserve comments or indentation.
+;; File is backed up at /Users/kondo/Library/Application Support/LightTable/User/user.behaviors.bak
+[
+ [:app :lt.objs.style/set-skin "new-dark"]
+
+ [:editor :lt.objs.editor/no-wrap]
+;; [:editor :lt.objs.style/set-theme "borealis"]
+ [:editor :lt.objs.style/set-theme "default"]
+;;  [:editor :lt.objs.style/set-theme "darksystemcd"]
+ [:editor :lt.objs.style/font-settings "Ricty Discord" "11" "1.2"]
+ [:editor :lt.plugins.emacs/activate-emacs]
+ [:editor :lt.objs.editor/highlight-current-line]
+
+ [:editor.clojure :lt.objs.langs.clj/print-length 1000]
+
+ [:editor.html :lt.objs.editor/tab-settings false 2 2]
+
+ [:files :lt.objs.files/file-types [{:exts [:cljx], :mime "text/x-clojure", :tags [:editor.clj :editor.clojure], :name "CljX"}]]
+
+ ;; ruler
+ ;; ref: https://github.com/LightTable/LightTable/pull/1831
+ [:editor :lt.objs.editor/set-rulers]
+
+ ;;; plugin settings ===========================================================
+
+ ;; settings for user plugin
+ [:app :lt.objs.plugins/load-js "react-0.12.2.min.js"]
+ [:app :lt.objs.plugins/load-js "user_compiled.js"]
+
+ ;; visible whitespace plugin
+ ;; ref: https://github.com/LightTable/Whitespace
+ ;; [:editor :lt.plugins.visible-whitespace/show-whitespace]
+
+ ;; photon plugin
+ ;; ref: https://github.com/cldwalker/photon
+ [:app :lt.plugins.photon/set-directories
+  [:plugins
+   "~/Code/Clojure/application"]]
+
+]
