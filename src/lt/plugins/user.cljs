@@ -18,6 +18,9 @@
     (files/parent project-path)
     nil))
 
+
+;; Commands ===================================================================
+
 (cmd/command {:command :user.close-other-project-tabs
               :desc "User: Close other project tabs"
               :exec (fn []
@@ -29,3 +32,9 @@
                           (let [project-dir (-> tab tabs/->path path->project-dir)]
                             (when-not (= cur-project-dir project-dir)
                               (object/raise tab :close))))))})
+
+(cmd/command {:command :user.instarepl-with-off-live-mode
+              :desc "User: Open a clojure instarepl starting with off live mode"
+              :exec (fn []
+                      (cmd/exec! :instarepl)
+                      (cmd/exec! :instarepl.toggle-live))})
