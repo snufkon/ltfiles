@@ -25,9 +25,10 @@
  [:app "ctrl-l" :clear-console]
  ;; フルスクリーンで表示する
  [:app "ctrl-f11" :window.fullscreen]
-
  ;; 検索する
  [:app "ctrl-t s" :searcher.show]
+
+ [:app "ctrl-shift-w" :photon.add-folder]
 
  [:editor "ctrl-[" :paredit.select.parent]
 
