@@ -4,8 +4,24 @@
             [lt.objs.tabs :as tabs]
             [lt.objs.command :as cmd]
             [lt.objs.editor.pool :as pool]
-            [lt.objs.files :as files])
+            [lt.objs.files :as files]
+            [lt.objs.console :as console]
+            [lt.objs.context :as ctx])
   (:require-macros [lt.macros :refer [defui behavior]]))
+
+;; TODO: use defmulti by lt.object.type
+(defn- print-obj-info
+  [obj]
+  (let [obj (if (satisfies? IDeref obj)
+              @obj
+              obj)]
+    (println "object keys:" (keys obj))
+    (println "id:" (:lt.object/id obj))
+    (println "type:" (:lt.object/type obj))
+    (println "tags:" (:lt.object/tags obj))
+    (println "triggers:" (:triggers obj))
+    (println "behaviors:" (:behaviors obj))
+    (println "children:" (:children obj))))
 
 (defn- current-editor-path
   []
