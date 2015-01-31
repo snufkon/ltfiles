@@ -64,7 +64,8 @@
                             cur-ts (ctx/->obj :tabset)
                             cur-ts-id (object/->id cur-ts)]
                         (if (= console-ts-id cur-ts-id)
-                          (if-let [ts (tabs/next-tabset cur-ts)]
+                          (if-let [ts (or (tabs/next-tabset cur-ts)
+                                          (tabs/prev-tabset cur-ts))]
                             (tabs/move-tab-to-tabset console/console ts)
                             (->> (cmd/exec! :tabset.new)
                                  (tabs/move-tab-to-tabset console/console)))
