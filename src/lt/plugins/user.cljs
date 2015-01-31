@@ -54,3 +54,18 @@
               :exec (fn []
                       (cmd/exec! :instarepl)
                       (cmd/exec! :instarepl.toggle-live))})
+
+(cmd/command {:command :user.console-tab
+              :desc "User: Open the console in a tab with smarter way"
+              :exec (fn []
+                      (cmd/exec! :console-tab)
+                      (let [console-ts (:lt.objs.tabs/tabset @console/console)
+                            console-ts-id (object/->id console-ts)
+                            cur-ts (ctx/->obj :tabset)
+                            cur-ts-id (object/->id cur-ts)]
+                        (if (= console-ts-id cur-ts-id)
+                          (if-let [ts (tabs/next-tabset cur-ts)]
+                            (tabs/move-tab-to-tabset console/console ts)
+                            (->> (cmd/exec! :tabset.new)
+                                 (tabs/move-tab-to-tabset console/console)))
+                          (tabs/active! console/console))))})
