@@ -34,6 +34,11 @@
     (files/parent project-path)
     nil))
 
+(defn- hide-command
+  [key]
+  (let [src-cmd (cmd/by-id key)
+        new-cmd (assoc src-cmd :hidden true)]
+    (object/update! cmd/manager [:commands] assoc (:command src-cmd) new-cmd)))
 
 ;; Commands ===================================================================
 
@@ -70,3 +75,4 @@
                             (->> (cmd/exec! :tabset.new)
                                  (tabs/move-tab-to-tabset console/console)))
                           (tabs/active! console/console))))})
+(hide-command :console-tab)
