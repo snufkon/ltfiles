@@ -59,6 +59,7 @@
               :exec (fn []
                       (cmd/exec! :instarepl)
                       (cmd/exec! :instarepl.toggle-live))})
+(hide-command :instarepl)
 
 (cmd/command {:command :user.console-tab
               :desc "User: Open the console in a tab with smarter way"

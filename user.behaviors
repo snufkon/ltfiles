@@ -25,7 +25,10 @@
  ;;; plugin settings ===========================================================
 
  ;; settings for user plugin
- [:app :lt.objs.plugins/load-js "user_compiled.js"]
+ [:app :lt.objs.plugins/load-js
+  ["../plugins/Clojure/codemirror/clojure-mode.js"
+   "../plugins/Clojure/clojure_compiled.js"
+   "user_compiled.js"]]
 
  ;; visible whitespace plugin
  ;; ref: https://github.com/LightTable/Whitespace
