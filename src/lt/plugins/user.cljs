@@ -77,3 +77,12 @@
                                  (tabs/move-tab-to-tabset console/console)))
                           (tabs/active! console/console))))})
 (hide-command :console-tab)
+
+(cmd/command {:command :user.comment-selection-and-copy
+              :desc "User: Comment line(s) and copy that to next line"
+              :exec (fn []
+                      (cmd/exec! :editor.copy)
+                      (cmd/exec! :comment-selection)
+                      (cmd/exec! :editor.selection.clear)
+                      (cmd/exec! :editor.new-line-indent)
+                      (cmd/exec! :editor.paste))})
