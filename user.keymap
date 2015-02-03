@@ -7,22 +7,28 @@
 ;; http://qiita.com/kurogelee/items/44384950fe1b277c4021
 ;;"@" [(:eval.custom "\"@\"" {:result-type :replace :verbatim true})]
 
-
 [
- ;; デフォルトのキーバインドを解除 ===========================================================
+ ;; Cancel ====================================================================
+ ;; default key bindings
  [:app "-alt-x" :show-commandbar-transient]
  [:app "-f11" :window.fullscreen]
  [:app "-pmeta-shift-f" :searcher.show]
 
- ;; emacs のキーバインドを解除
+ ;; emacs key bindings
  [:editor.keys.emacs "-ctrl-k" (:emacs.keymap-cmd "Ctrl-K")]
  [:editor.keys.emacs "-ctrl-t" [(:emacs.keymap-cmd "Ctrl-T")]]
 
- ;; キーバインドを設定 =================================================================
+ ;; describe-key key bindings
+ [:app "-ctrl-h k" :lt.plugins.describe-key/describe-key]
+
+
+ ;; Setting ===================================================================
+
  [:app "ctrl-:" :show-commandbar-transient]
  [:app "ctrl-;" :workspace.show]
  [:app "ctrl-shift-space" :toggle-console]
  [:app "ctrl-l" :clear-console]
+
  ;; フルスクリーンで表示する
  [:app "ctrl-f11" :window.fullscreen]
  ;; 検索する
@@ -40,8 +46,6 @@
  [:app "alt-cmd-i" :dev-inspector]
 
 ;; "cmd-=" [:paredit.select.parent :smart-indent-selection :paredit.select.clear]
-
-
 
  ;;; 括弧の対応を維持する
  ;;;
@@ -66,48 +70,47 @@
  ;; 選択領域をコメント/アンコメントする
  [:editor "ctrl-]" :toggle-comment-selection]
 
+ ;; describe-key plugin のキーバインドを解除
+ [:app "ctrl-t k" :lt.plugins.describe-key/describe-key]
+
  [:editor "ctrl-shift-h" :editor.backspace-indent]
  [:editor "ctrl-shift-9" :subpar.grow.right]
  [:editor "cmd-up" :subpar.move.backward-up]
  [:editor "cmd-down" :subpar.move.forward-down]
  [:editor "alt-up" :subpar.splice.delete-backward]
 
- [:editor "ctrl-k" :paredit-plus.kill]
+ ;; [:editor "ctrl-k" :paredit-plus.kill]
+
  [:editor "pmeta-i" :clear-inline-results]
 
+ [:filter-list.input "ctrl-n" (:filter-list.input.move-selection 1)]
+ [:filter-list.input "ctrl-p" (:filter-list.input.move-selection -1)]
+
+;; old settings
+;; [:editor "ctrl-[" :paredit-plus.kill]
+;; [:editor "backspace" :paredit-plus.backward-delete]
 ;;  [:editor "ctrl-shift-." :editor.sublime.selectLinesDownward]
 ;;  [:editor "ctrl-shift-/" :editor.sublime.singleSelectionTop]
 ;;  [:editor "ctrl-shift-s" :searcher.show]
 ;;  [:editor "alt-shift-w" :editor.watch.unwatch]
-
 ;;  [:editor "pmeta-d" :editor.doc.toggle]
 ;;  [:editor "ctrl-t" :tabset.next]
 ;;  [:editor "alt-w" :editor.watch.watch-selection]
-
-
-
 ;;  [:editor "ctrl-shift-h" :editor.sublime.selectNextOccurrence]
 ;;  [:editor "ctrl-shift-," :editor.sublime.selectLinesUpward]
-
 ;;  [:editor.clj "alt-down" :subpar.splice.delete-forward]
-
 ;;  [:editor.clj "alt-shift-8" (:subpar.open-pair "()") :subpar.grow.right]
 ;;  [:editor.clj "cmd-right" :subpar.move.forward]
 ;;  [:editor.clj "ctrl-shift-8" :subpar.grow.left]
 ;;  [:editor.clj "delete" :subpar.delete.right]
-
 ;;  [:editor.clj "ctrl-shift-[" :subpar.shrink.left]
 ;;  [:editor.clj "alt-s" :subpar.splice]
 ;;  [:editor.clj "ctrl-shift-]" :subpar.shrink.right]
 ;;  [:editor.clj "cmd-down" :subpar.move.forward-down]
 ;;  [:editor.clj "cmd-left" :subpar.move.backward]
-
 ;;  [:editor.clj "backspace" :subpar.delete.left]
-
-
 ;;  [:editor.cljs "\"" :subpar.insert-double-quote]
 ;;  [:editor.cljs "alt-down" :subpar.splice.delete-forward]
-
 ;;  [:editor.cljs "alt-shift-8" (:subpar.open-pair "()") :subpar.grow.right]
 ;;  [:editor.cljs "cmd-right" :subpar.move.forward]
 ;;  [:editor.cljs "ctrl-shift-8" :subpar.grow.left]
@@ -120,11 +123,8 @@
 ;;  [:editor.cljs "cmd-down" :subpar.move.forward-down]
 ;;  [:editor.cljs "cmd-left" :subpar.move.backward]
 ;;  [:editor.cljs "backspace" :subpar.delete.left]
-
-
 ;;  [:editor.keys.emacs "-delete" (:emacs.keymap-cmd "Delete")]
 ;;  [:editor.keys.emacs "-backspace" (:emacs.keymap-cmd "Backspace")]
-
 ;;  [:editor.keys.normal "-\"" (:editor.repeat-pair "\"")]
 ;;  [:editor.keys.normal "-(" (:editor.open-pair "(")]
 ;;  [:editor.keys.normal "-)" (:editor.close-pair ")")]
@@ -133,7 +133,4 @@
 ;;  [:editor.keys.normal "-]" (:editor.close-pair "]")]
 ;;  [:editor.keys.normal "-}" (:editor.close-pair "}")]
 ;;  [:editor.keys.normal "-backspace" :editor.backspace-pair]
-
- [:filter-list.input "ctrl-n" (:filter-list.input.move-selection 1)]
- [:filter-list.input "ctrl-p" (:filter-list.input.move-selection -1)]
 ]
