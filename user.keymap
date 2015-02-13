@@ -86,18 +86,21 @@
  [:filter-list.input "ctrl-n" (:filter-list.input.move-selection 1)]
  [:filter-list.input "ctrl-p" (:filter-list.input.move-selection -1)]
 
+ ;; multiple cursors を設定
+ [:editor "ctrl-shift-." :editor.sublime.selectLinesDownward]
+ [:editor "ctrl-shift-/" :editor.sublime.singleSelectionTop]
+ [:editor "ctrl-shift-h" :editor.sublime.selectNextOccurrence]
+ [:editor "ctrl-shift-," :editor.sublime.selectLinesUpward]
+
 ;; old settings
 ;; [:editor "ctrl-[" :paredit-plus.kill]
 ;; [:editor "backspace" :paredit-plus.backward-delete]
-;;  [:editor "ctrl-shift-." :editor.sublime.selectLinesDownward]
-;;  [:editor "ctrl-shift-/" :editor.sublime.singleSelectionTop]
 ;;  [:editor "ctrl-shift-s" :searcher.show]
 ;;  [:editor "alt-shift-w" :editor.watch.unwatch]
 ;;  [:editor "pmeta-d" :editor.doc.toggle]
 ;;  [:editor "ctrl-t" :tabset.next]
 ;;  [:editor "alt-w" :editor.watch.watch-selection]
-;;  [:editor "ctrl-shift-h" :editor.sublime.selectNextOccurrence]
-;;  [:editor "ctrl-shift-," :editor.sublime.selectLinesUpward]
+
 ;;  [:editor.clj "alt-down" :subpar.splice.delete-forward]
 ;;  [:editor.clj "alt-shift-8" (:subpar.open-pair "()") :subpar.grow.right]
 ;;  [:editor.clj "cmd-right" :subpar.move.forward]
