@@ -92,6 +92,12 @@
  [:editor "ctrl-shift-h" :editor.sublime.selectNextOccurrence]
  [:editor "ctrl-shift-," :editor.sublime.selectLinesUpward]
 
+ ;; タブ移動を設定
+ [:tabs "pmeta-left" :tabs.prev]
+ [:tabs "pmeta-right" :tabs.next]
+
+
+
 ;; old settings
 ;; [:editor "ctrl-[" :paredit-plus.kill]
 ;; [:editor "backspace" :paredit-plus.backward-delete]
