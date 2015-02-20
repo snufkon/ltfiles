@@ -45,6 +45,8 @@
 
  [:app "alt-cmd-i" :dev-inspector]
 
+ [:app "ctrl-shift-o" :ltinator.open-working-environment]
+
 ;; "cmd-=" [:paredit.select.parent :smart-indent-selection :paredit.select.clear]
 
  ;;; 括弧の対応を維持する
