@@ -40,6 +40,7 @@
         new-cmd (assoc src-cmd :hidden true)]
     (object/update! cmd/manager [:commands] assoc (:command src-cmd) new-cmd)))
 
+
 ;; Commands ===================================================================
 
 (cmd/command {:command :user.close-other-project-tabs
@@ -86,3 +87,10 @@
                       (cmd/exec! :editor.selection.clear)
                       (cmd/exec! :editor.new-line-indent)
                       (cmd/exec! :editor.paste))})
+
+;; Bug?
+;;
+;; Key binding of `:show-commandbar-transient` doesn't work startup time,
+;; so I am calling `:keymaps.reload` command directly.
+;;
+(cmd/exec! :keymaps.reload)
