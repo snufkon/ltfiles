@@ -96,4 +96,9 @@
 
  ;; タブ移動を設定
  [:tabs "pmeta-left" :tabs.prev]
- [:tabs "pmeta-right" :tabs.next]]
+ [:tabs "pmeta-right" :tabs.next]
+
+ ;; タブセット移動
+ [:tabs "ctrl-t n" :tabset.next]
+
+ ]
