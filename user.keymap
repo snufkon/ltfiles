@@ -11,6 +11,7 @@
  ;; Cancel ====================================================================
  ;; default key bindings
  [:app "-alt-x" :show-commandbar-transient]
+ [:app "-ctrl-space" :show-commandbar-transient]
  [:app "-f11" :window.fullscreen]
  [:app "-pmeta-shift-f" :searcher.show]
 

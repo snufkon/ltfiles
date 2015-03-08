@@ -87,10 +87,3 @@
                       (cmd/exec! :editor.selection.clear)
                       (cmd/exec! :editor.new-line-indent)
                       (cmd/exec! :editor.paste))})
-
-;; Bug?
-;;
-;; Key binding of `:show-commandbar-transient` doesn't work startup time,
-;; so I am calling `:keymaps.reload` command directly.
-;;
-(cmd/exec! :keymaps.reload)
